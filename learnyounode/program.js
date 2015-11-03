@@ -1,14 +1,11 @@
-var lister = require("./lister.js")
+var http = require("http")
 
 
-var dir_path = process.argv[2]
-var ext = process.argv[3]
+var url = process.argv[2]
+http.get(url, function(response){
+	response.setEncoding("utf8")
+	response.on("data", console.log)
+	// response.on("error", console.error)
+	// Non-standard Syntax   ^^^^^^^^^^^  
 
-lister(dir_path, ext, function(err, files){
-		if (err){console.log(err); 
-			return
-		}
-		files.forEach(function(file){console.log(file)}) 
 })
-
-
