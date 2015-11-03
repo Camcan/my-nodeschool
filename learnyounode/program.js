@@ -1,11 +1,17 @@
 var http = require("http")
-
-
 var url = process.argv[2]
+
+
 http.get(url, function(response){
-	response.setEncoding("utf8")
-	response.on("data", console.log)
-	// response.on("error", console.error)
-	// Non-standard Syntax   ^^^^^^^^^^^  
+	var toPrint = ""
+	var count = 0
+	response.on("data", function(data){
+		count += data.toString().length
+		toPrint = toPrint.concat(data.toString())
+	})
+	response.on("end", function(){
+		console.log(count)
+		console.log(toPrint)
+	})
 
 })
