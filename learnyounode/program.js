@@ -1,12 +1,11 @@
-var numbers = process.argv
+var fs = require('fs')
 
-function outputSum(array){
-  var sum = 0
-  for (n=2; n < array.length; n++) {
-    sum += parseInt(array[n])
-  }
+var fileString = fs.readFileSync(process.argv[2]).toString()
+
+function sumNewLines(string){
+  var sum = string.split('\n').length - 1
   console.log(sum)
 }
 
-outputSum(numbers)
+sumNewLines(fileString)
 
