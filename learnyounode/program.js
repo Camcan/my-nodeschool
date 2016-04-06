@@ -1,23 +1,17 @@
-var fs = require('fs')
-var filter = process.argv[3].toString()
+var runFilter = require('./mymodule.js')
+var filterValue = process.argv[3]
+var path = process.argv[2]
 
-function filterFiles(err, list){
-  if (list) {
-    var getResults = function(){
-      for (var i = 0; i < list.length; i++) {
-        if (list[i].indexOf("." + filter) > -1) {
-          console.log(list[i])
-        }
-      }
+var printArray = function(err, arr){
+  if (arr){
+    for (var i = 0; i < arr.length; i++){
+      console.log(arr[i])
     }
-
-    getResults()
-
   }
-  if (err) {
-    throw err
+  if (err){
+    console.log(err)
   }
 }
+runFilter(path, filterValue, printArray)
 
-fs.readdir(process.argv[2], filterFiles)
 
