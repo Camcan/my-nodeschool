@@ -1,17 +1,14 @@
-var runFilter = require('./mymodule.js')
-var filterValue = process.argv[3]
-var path = process.argv[2]
+var getReq = require('./mymodule.js')
+var address = process.argv[2]
 
-var printArray = function(err, arr){
-  if (arr){
-    for (var i = 0; i < arr.length; i++){
-      console.log(arr[i])
-    }
+var printData = function(err, data){
+  if (data){
+      console.log(data)
   }
   if (err){
     console.log(err)
   }
 }
-runFilter(path, filterValue, printArray)
+getReq(address, printData)
 
 
