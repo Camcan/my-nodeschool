@@ -1,15 +1,23 @@
 var fs = require('fs')
+var filter = process.argv[3].toString()
 
+function filterFiles(err, list){
+  if (list) {
+    var getResults = function(){
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].indexOf("." + filter) > -1) {
+          console.log(list[i])
+        }
+      }
+    }
 
-function sumNewLines(err, data){
-  if (data) {
-    var sum = data.toString().split('\n').length - 1
-    console.log(sum)
+    getResults()
+
   }
   if (err) {
     throw err
   }
-
 }
-fs.readFile(process.argv[2], sumNewLines)
+
+fs.readdir(process.argv[2], filterFiles)
 
